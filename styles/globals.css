@@ -47,12 +47,12 @@
       hsla(215, 98%, 61%, 1) 0px,
       transparent 0%
     ),
-    radial-gradient(at 97% 21%, rgb(114, 254, 133) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, rgb(255, 85, 102) 0px, transparent 50%),
-    radial-gradient(at 10% 29%, rgb(148, 111, 248) 0px, transparent 50%),
-    radial-gradient(at 97% 96%, rgb(208, 169, 102) 0px, transparent 50%),
-    radial-gradient(at 33% 50%, rgb(127, 145, 185) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, rgb(246, 175, 195) 0px, transparent 50%);
+    radial-gradient(at 97% 21%, rgb(60, 218, 81) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, rgb(237, 65, 82) 0px, transparent 50%),
+    radial-gradient(at 10% 29%, rgb(121, 85, 219) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, rgb(227, 170, 73) 0px, transparent 50%),
+    radial-gradient(at 33% 50%, rgb(97, 124, 181) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, rgb(243, 137, 167) 0px, transparent 50%);
   position: absolute;
   content: "";
   width: 100%;
@@ -87,11 +87,11 @@
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-300 via-orange-300 to-yellow-400 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-amber-400 via-orange-300 to-yellow-400 bg-clip-text text-transparent;
 }
 
 .green_gradient {
-  @apply bg-gradient-to-r from-green-500 to-green-800 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-green-500 via-emerald-500 to-green-800 bg-clip-text text-transparent;
 }
 
 .blue_gradient {
