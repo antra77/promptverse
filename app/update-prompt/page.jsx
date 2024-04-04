@@ -8,6 +8,7 @@ import Form from "@components/Form";
 
 const EditPrompt = () => {
   const router = useRouter();
+  // Wrap the usage of useSearchParams() within a Suspense boundary
   const searchParams = useSearchParams();
   const promptId = searchParams.get("id");
 
@@ -53,7 +54,7 @@ const EditPrompt = () => {
   };
 
   return (
-    <Suspense>
+    <Suspense fallback={<div>Loading...</div>}> {/* Provide a fallback UI */}
       <Form
         type="Edit"
         post={post}
