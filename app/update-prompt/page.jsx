@@ -1,31 +1,38 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router"; // Import useRouter instead of next/navigation
 import { Suspense } from "react";
 
 import Form from "@components/Form";
 
 const EditPrompt = () => {
   const router = useRouter();
-  // Wrap the usage of useSearchParams() within a Suspense boundary
-  const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
+  const { id } = router.query; // Access query parameters using useRouter
+  const promptId = id;
 
   const [submitting, setIsSubmitting] = useState(false);
   const [post, setPost] = useState({ prompt: "", tag: "" });
 
   useEffect(() => {
     const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
-      const data = await response.json();
+      if (!promptId) return; // Exit if promptId is falsy
 
-      setPost({
-        prompt: data.prompt,
-        tag: data.tag,
-      });
+      try {
+        const response = await fetch(`/api/prompt/${promptId}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch prompt details");
+        }
+        const data = await response.json();
+        setPost({
+          prompt: data.prompt,
+          tag: data.tag,
+        });
+      } catch (error) {
+        console.error("Error fetching prompt details:", error);
+      }
     };
-    if (promptId) getPromptDetails();
+    getPromptDetails();
   }, [promptId]);
 
   const updatePrompt = async (e) => {
@@ -54,7 +61,7 @@ const EditPrompt = () => {
   };
 
   return (
-    <Suspense fallback={<div>Loading...</div>}> {/* Provide a fallback UI */}
+    <Suspense fallback={<div>Loading...</div>}>
       <Form
         type="Edit"
         post={post}
