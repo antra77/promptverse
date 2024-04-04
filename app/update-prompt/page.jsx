@@ -1,37 +1,55 @@
-"use client";
-
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { useSearchParams } from "next/dist/client/router";
 
 import Form from "@components/Form";
 
 const UpdatePrompt = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
+  const [loading, setLoading] = useState(true);
 
-  const [post, setPost] = useState({ prompt: "", tag: "", });
-  const [submitting, setIsSubmitting] = useState(false);
-
+  // Fetching data from the API based on the searchParams
   useEffect(() => {
-    const getPromptDetails = async () => {
-      const response = await fetch(`/api/prompt/${promptId}`);
-      const data = await response.json();
-
-      setPost({
-        prompt: data.prompt,
-        tag: data.tag,
-      });
+    const fetchData = async () => {
+      // Extracting the id from searchParams
+      const promptId = searchParams.get("id");
+      
+      if (promptId) {
+        try {
+          const response = await fetch(`/api/prompt/${promptId}`);
+          if (!response.ok) {
+            throw new Error("Failed to fetch prompt details");
+          }
+          const data = await response.json();
+          setPost({
+            prompt: data.prompt,
+            tag: data.tag,
+          });
+        } catch (error) {
+          console.error("Error fetching prompt details:", error);
+        }
+      }
+      setLoading(false);
     };
+    fetchData();
+  }, [searchParams]);
 
-    if (promptId) getPromptDetails();
-  }, [promptId]);
+  const [post, setPost] = useState({ prompt: "", tag: "" });
+  const [submitting, setIsSubmitting] = useState(false);
 
   const updatePrompt = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    if (!promptId) return alert("Missing PromptId!");
+    // Extracting the id from searchParams
+    const promptId = searchParams.get("id");
+
+    if (!promptId) {
+      alert("Missing PromptId!");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch(`/api/prompt/${promptId}`, {
@@ -44,17 +62,24 @@ const UpdatePrompt = () => {
 
       if (response.ok) {
         router.push("/");
+      } else {
+        console.error("Failed to update prompt:", response.statusText);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error updating prompt:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
 
+  // Render loading state if data is still loading
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <Form
-      type='Edit'
+      type="Edit"
       post={post}
       setPost={setPost}
       submitting={submitting}
