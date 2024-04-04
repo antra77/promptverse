@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router"; // Import useRouter instead of next/navigation
+import { useRouter } from "next/router";
 import { Suspense } from "react";
 
 import Form from "@components/Form";
 
 const EditPrompt = () => {
   const router = useRouter();
-  const { id } = router.query; // Access query parameters using useRouter
+  const { id } = router.query;
   const promptId = id;
 
   const [submitting, setIsSubmitting] = useState(false);
@@ -16,7 +16,7 @@ const EditPrompt = () => {
 
   useEffect(() => {
     const getPromptDetails = async () => {
-      if (!promptId) return; // Exit if promptId is falsy
+      if (!promptId) return;
 
       try {
         const response = await fetch(`/api/prompt/${promptId}`);
