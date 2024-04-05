@@ -47,8 +47,8 @@
       hsla(215, 98%, 61%, 1) 0px,
       transparent 0%
     ),
-    radial-gradient(at 97% 21%, rgb(60, 218, 81) 0px, transparent 50%),
-    radial-gradient(at 52% 99%, rgb(237, 65, 82) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, rgb(8, 98, 20) 0px, transparent 50%),
+    radial-gradient(at 52% 99%, rgb(229, 42, 60) 0px, transparent 50%),
     radial-gradient(at 10% 29%, rgb(121, 85, 219) 0px, transparent 50%),
     radial-gradient(at 97% 96%, rgb(227, 170, 73) 0px, transparent 50%),
     radial-gradient(at 33% 50%, rgb(97, 124, 181) 0px, transparent 50%),
@@ -91,7 +91,7 @@
 }
 
 .green_gradient {
-  @apply bg-gradient-to-r from-green-500 via-emerald-500 to-green-800 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-green-500 via-emerald-600 to-green-800 bg-clip-text text-transparent;
 }
 
 .blue_gradient {
@@ -125,11 +125,11 @@
 
 /* Form Component */
 .form_textarea {
-  @apply w-full flex rounded-lg h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-xl h-[200px] mt-2 p-3 text-sm text-gray-500 outline-0;
 }
 
 .form_input {
-  @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
+  @apply w-full flex rounded-xl mt-2 p-3 text-sm text-gray-500 outline-0;
 }
 
 /* Nav Component */
@@ -147,7 +147,7 @@
 
 /* PromptCard Component */
 .prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+  @apply flex-1 break-inside-avoid rounded-xl border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
 }
 
 .flex-center {
@@ -164,4 +164,18 @@
 
 .flex-between {
   @apply flex justify-between items-center;
+}
+
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(216, 216, 216);
+  border-radius: 40px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
