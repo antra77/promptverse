@@ -26,7 +26,7 @@ Welcome to Promptverse, an AI prompt app built with Next.js. Promptverse allows 
 
 Experience Promptverse in action:
 
-- **Website**: [Promptverse Live]()
+- **Website**: [Promptverse Live](https://promptverse-seven.vercel.app/)
 
 ## Getting Started
 
