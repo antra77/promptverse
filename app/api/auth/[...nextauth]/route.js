@@ -22,12 +22,12 @@ async session({ session }) {
 async signIn({ user, account, profile, email, credentials }) {
   try {
     await connectToDB();
-    const userExists = await User.findOne({ email: profile?.email });
+    const userExists = await User.findOne({ email: profile.email });
     // if not, create a new document and save user in MongoDB
-    if (userExists === null) {
+    if (!userExists) {
       await User.create({
-        email: profile?.email,
-        username: profile?.name.replace(/\s+/g, '').toLowerCase(),
+        email: profile.email,
+        username: profile.name.replace(' ', '').toLowerCase(),
         image: user.image
       })
     }
